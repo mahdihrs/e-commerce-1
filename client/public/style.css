@@ -1,0 +1,15 @@
+.item-card {
+    max-height: 250px !important;
+    height: 225px !important;
+    width: 250px !important;
+}
+.card-for-item {
+    height: 500px;
+}
+.desc-item {
+    max-height: 120px;
+    overflow-y: scroll;
+}
+.card-header {
+    background-color: rgb(210, 210, 210);
+}
