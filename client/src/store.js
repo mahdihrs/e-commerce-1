@@ -181,7 +181,6 @@ export default new Vuex.Store({
             }
         })
         .then(({data}) => {
-            console.log(data)
             commit('SetMyUnconfirmedTransactions', data)
         })
         .catch(err => {
@@ -197,7 +196,6 @@ export default new Vuex.Store({
             }
         })
         .then(({data}) => {
-            console.log(data)
             commit('SetTransactionHistories', data)
         })
         .catch(err => {
@@ -213,7 +211,6 @@ export default new Vuex.Store({
             }
         })
         .then(({data}) => {
-            console.log(data)
             commit('SetUnconfirmedTransactionsForAdmin', data)
         })
         .catch(err => {
@@ -229,7 +226,6 @@ export default new Vuex.Store({
             }
         })
         .then(({data}) => {
-            console.log(data)
             commit('SetTransactionHistoriesForAdmin', data)
         })
         .catch(err => {

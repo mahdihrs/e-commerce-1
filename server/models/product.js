@@ -15,6 +15,8 @@ const productSchema = new Schema({
         validate: function(v) {
             if (v === 0) {
                 throw new Error("Price can not be empty")
+            } else if (v < 0) {
+                throw new Error("Price can not be set to less than 0")
             }
         }
     },
@@ -24,6 +26,8 @@ const productSchema = new Schema({
         validate: function(v) {
             if (v === 0) {
                 throw new Error("Stock can not be set to 0")
+            } else if (v < 0) {
+                throw new Error("Stock can not be set to less than 0")
             }
         }
     },
@@ -33,7 +37,7 @@ const productSchema = new Schema({
     },
     created_at: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
         required: true
     } 
 });

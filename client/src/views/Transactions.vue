@@ -26,7 +26,6 @@
             <thead>
                 <tr>
                     <th scope="col-7">Total</th>
-                    <!-- <th scope="col">Column heading</th> -->
                     <th scope="col">Date</th>
                 </tr>
             </thead>
@@ -59,12 +58,6 @@ export default {
             'myUnconfirmedTransactions',
             'transactionHistories'
         ])
-    },
-    watch: {
-        myUnconfirmedTransactions(v) {
-            this.$store.dispatch('getUnconfirmedTransaction')
-            this.$store.dispatch('getTransactionHistories')
-        }
     },
     methods: {
         confirmation(id) {

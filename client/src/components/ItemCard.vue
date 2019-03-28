@@ -7,7 +7,7 @@
                 <img v-else src="https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2012%2F01%2Fwant-les-essentiels-de-la-vie-o039hare-shopper-tote-1.jpg" class="item-card my-3 img-fluid" alt="item-picture">
                 <h4 class="card-title">{{ item.name }}</h4>
                 <p v-if="item.price" class="card-text desc-item mb-0">{{ currencyConverter(item.price) }}</p>
-                <p v-if="item.stock" class="card-text desc-item">Stock: {{ stockInterface(item.stock) }}</p>
+                <p class="card-text desc-item">Stock:{{ stockInterface(item.stock) }}</p>
                 <!-- <p class="card-text desc-item">{{ item.description }}</p> -->
             </div>
         </div>
@@ -37,7 +37,7 @@ export default {
             return `Rp ${num.toLocaleString()},00`
         },
         stockInterface(num) {
-            if (num == 1) {
+            if (num <= 1) {
                 return `${num} pc`
             } else {
                 return `${num} pcs`

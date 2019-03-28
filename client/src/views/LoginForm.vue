@@ -74,7 +74,6 @@ export default {
             })
             .catch(err => {
                 this.error = err.response.data.msg
-                console.log(JSON.stringify(err))
             })
         }
     }

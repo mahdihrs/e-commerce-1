@@ -62,7 +62,7 @@
                         <p style="color: red;">{{ courierValidation }}</p>
                     </div>
                     <!-- ---- -->
-                    <button class="btn btn-info btn-sm mb-5" @click="shippingCostCheckToServer">Check Shipping Cost</button>
+                    <button class="btn btn-info btn-sm mb-5" @click="shippingCostCheckToServer">Choose Service</button>
                     <!-- --- -->
                     <div v-if="loadingGenerateShippingCost">
                         <img src="https://i.gifer.com/7plQ.gif" alt="" height="150">
@@ -298,27 +298,34 @@ export default {
             })
         },
         checkout() {
-            server({
-                url: `/transactions`,
-                method: 'post',
-                headers: {
-                    access_token: localStorage.getItem('token')
-                },
-                data: {
-                    total: this.totalPriceInCart()
-                }
-            })
-            .then(({data}) => {
-                Toast.fire({
-                    type: 'success',
-                    title: `Transaction has been made`
+            if (!this.shippingCost) {
+                Swal.fire('Please choose courier service')
+            } else {
+                server({
+                    url: `/transactions`,
+                    method: 'post',
+                    headers: {
+                        access_token: localStorage.getItem('token')
+                    },
+                    data: {
+                        cart: this.productsToShowInCart,
+                        total: this.totalPriceInCart()
+                    }
                 })
-                this.$store.dispatch('getMyCart')                
-                this.$store.dispatch('getAllProducts')
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                .then(({data}) => {
+                    Toast.fire({
+                        type: 'success',
+                        title: `Transaction has been made`
+                    })
+                    this.clearCart()
+                    this.$store.dispatch('getMyCart')                
+                    this.$store.dispatch('getAllProducts')
+                    this.$store.dispatch('getUnconfirmedTransaction')
+                })
+                .catch(err => {
+                    Swal.fire('Error', `${err.response.data.msg}`, 'error')
+                })
+            }
         }
     }
 }
